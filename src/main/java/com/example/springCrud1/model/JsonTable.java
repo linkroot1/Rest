@@ -24,6 +24,9 @@ public class JsonTable {
     @Column(name = "xml_text")
     private String xml_text;
 
+    @Column(name = "xml_response")
+    private String xml_response;
+
 //    @Column(name = "json_obj")
 //    @Convert(converter= JSONObjectConverter.class)
 //    private JSONObject jsonObject;

@@ -16,6 +16,7 @@
         <th>Id</th>
         <th>Json text</th>
         <th> XML text </th>
+        <th> XML response </th>
       </tr>
       </thead>
       <tbody>
@@ -23,6 +24,7 @@
         <td th:text="${json.id}"></td>
         <td th:text="${json.json_text}"></td>
         <td th:text="${json.xml_text}"></td>
+        <td th:text="${json.xml_response}"></td>
 
         <td>
           <a class="btn btn-xs btn-outline-dark" th:href="@{json-update/{id}(id=${json.id})}" role="button">Изменить</a>
