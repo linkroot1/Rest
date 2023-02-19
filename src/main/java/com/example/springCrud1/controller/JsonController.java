@@ -50,6 +50,8 @@ public class JsonController {
         jsonService.saveJson(jsonTable);
         //тут должен быть вызов метода сервиса который преобразует json в xml и (для начала) просто сохраняет результат в бд
         jsonService.saveXML(jsonTable);
+        String convertedXML = soapRequestClient.getConvertedXML(jsonTable.getXml_text());
+        jsonService.saveXML_response(jsonTable, convertedXML);
         return "redirect:/jsons";
     }
 
@@ -68,8 +70,8 @@ public class JsonController {
         model.addAttribute("json", jsonTable);
 
 
-        String convertedXML = soapRequestClient.getConvertedXML(jsonTable.getXml_text());
-        System.out.println(convertedXML);
+//        String convertedXML = soapRequestClient.getConvertedXML(jsonTable.getXml_text());
+//        System.out.println(convertedXML);
 
 
         return "json-update";

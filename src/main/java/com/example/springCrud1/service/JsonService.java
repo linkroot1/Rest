@@ -66,6 +66,8 @@ public class JsonService {
         String xmlText = xmlMapper.writeValueAsString(person);
         jsonTable.setXml_text(xmlText);
 
+//        String convertedXML = soapRequestClient.getConvertedXML(jsonTable.getXml_text());
+//        System.out.println(convertedXML);
 
         return jsonRepository.save(jsonTable);
     }
@@ -99,6 +101,12 @@ public class JsonService {
         return personRepository.save(person);
     }
 
+    public JsonTable saveXML_response(JsonTable jsonTable, String xml_string){
+
+
+        jsonTable.setXml_response(xml_string);
+        return jsonRepository.save(jsonTable);
+    }
 
 
     public void deleteById(Long id){
