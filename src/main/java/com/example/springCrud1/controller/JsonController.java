@@ -1,5 +1,6 @@
 package com.example.springCrud1.controller;
 
+import com.example.springCrud1.client.SoapRequestClient;
 import com.example.springCrud1.model.JsonTable;
 import com.example.springCrud1.model.Person;
 import com.example.springCrud1.service.JsonService;
@@ -17,11 +18,13 @@ import java.util.List;
 public class JsonController {
 
     public final JsonService jsonService;
+    private final SoapRequestClient soapRequestClient;
 
 
     @Autowired
-    public JsonController(JsonService jsonService){
+    public JsonController(JsonService jsonService, SoapRequestClient soapRequestClient){
         this.jsonService = jsonService;
+        this.soapRequestClient = soapRequestClient;
     }
 
 
@@ -63,6 +66,12 @@ public class JsonController {
 
         JsonTable jsonTable = jsonService.findById(id);
         model.addAttribute("json", jsonTable);
+
+
+        String convertedXML = soapRequestClient.getConvertedXML(jsonTable.getXml_text());
+        System.out.println(convertedXML);
+
+
         return "json-update";
     }
 
