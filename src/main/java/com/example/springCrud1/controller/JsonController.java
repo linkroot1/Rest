@@ -43,6 +43,7 @@ public class JsonController {
         return "json-create";
     }
 
+
     @PostMapping("/json-create")
     public String createJson(JsonTable jsonTable) throws JsonProcessingException {
 
@@ -63,6 +64,7 @@ public class JsonController {
         return "redirect:/jsons";
     }
 
+
     @GetMapping("/json-update/{id}")
     public String updateJsonForm(@PathVariable("id") Long id, Model model){
 
@@ -70,18 +72,16 @@ public class JsonController {
         model.addAttribute("json", jsonTable);
 
 
-//        String convertedXML = soapRequestClient.getConvertedXML(jsonTable.getXml_text());
-//        System.out.println(convertedXML);
-
-
         return "json-update";
     }
+
 
     @PostMapping("/json-update")
     public String updateJson(JsonTable jsonTable){
         jsonService.saveJson(jsonTable);
         return "redirect:/jsons";
     }
+
 
     @GetMapping("/persons")
     public String findAllPersons(Model model){

@@ -13,9 +13,6 @@ public class JsonTable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Column(name = "json_object")
-//    @Convert(converter= JSONObjectConverter.class)
-//    private JSONObject jsonObject;
 
     @Column(name = "json_text")
     private String json_text;
@@ -27,7 +24,5 @@ public class JsonTable {
     @Column(name = "xml_response")
     private String xml_response;
 
-//    @Column(name = "json_obj")
-//    @Convert(converter= JSONObjectConverter.class)
-//    private JSONObject jsonObject;
+
 }
