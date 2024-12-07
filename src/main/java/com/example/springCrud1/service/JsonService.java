@@ -30,7 +30,6 @@ public class JsonService {
 
 
     public JsonTable findById(Long id){
-
         return jsonRepository.findById(id).orElse(null);
     }
 
@@ -40,17 +39,14 @@ public class JsonService {
     }
 
     public List<Person> findAllpersons(){
-
         return personRepository.findAll();
     }
 
     public JsonTable saveJson(JsonTable jsonTable){
-
         return jsonRepository.save(jsonTable);
     }
 
     public JsonTable saveXML(JsonTable jsonTable) throws JsonProcessingException {
-
         String text_json = jsonTable.getJson_text();
 
         ObjectMapper xmlMapper = new XmlMapper();
@@ -66,44 +62,22 @@ public class JsonService {
         String xmlText = xmlMapper.writeValueAsString(person);
         jsonTable.setXml_text(xmlText);
 
-//        String convertedXML = soapRequestClient.getConvertedXML(jsonTable.getXml_text());
-//        System.out.println(convertedXML);
-
         return jsonRepository.save(jsonTable);
     }
 
     public Person savePerson(JsonTable jsonTable){
-
-        // Перед сохранением:
-        // Получить из объекта строку
         String text_json = jsonTable.getJson_text();
 
-        // Распарсить JSON строку и заполнить данными модель
-//        GsonBuilder builder = new GsonBuilder();
-//        builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>(){
-//            public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException{
-//                return new Date(json.getAsJsonPrimitive().getAsString());
-//            }
-//        });
-//
-//        Gson g = builder.create();
-//        Gson g = new Gson();
         String dateFormat = "yyyy-MM-dd HH:mm:ss";
         Gson g = new GsonBuilder()
                 .setDateFormat(dateFormat)
                 .create();
         Person person = g.fromJson(text_json, Person.class);
 
-
-        // Получить JSON, преобразовать в XML и сохранить в модель
-
-
         return personRepository.save(person);
     }
 
     public JsonTable saveXML_response(JsonTable jsonTable, String xml_string){
-
-
         jsonTable.setXml_response(xml_string);
         return jsonRepository.save(jsonTable);
     }

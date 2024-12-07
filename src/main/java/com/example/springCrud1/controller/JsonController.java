@@ -49,7 +49,6 @@ public class JsonController {
 
         jsonService.savePerson(jsonTable);
         jsonService.saveJson(jsonTable);
-        //тут должен быть вызов метода сервиса который преобразует json в xml и (для начала) просто сохраняет результат в бд
         jsonService.saveXML(jsonTable);
         String convertedXML = soapRequestClient.getConvertedXML(jsonTable.getXml_text());
         jsonService.saveXML_response(jsonTable, convertedXML);
